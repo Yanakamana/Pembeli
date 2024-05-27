@@ -39,3 +39,26 @@ export async function ambilDaftarPembeli() {
       notlpn: dok.data().notlpn,
     });
   });
+  return hasil;
+}
+
+export function formatAngka(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+export async function  tambahPembeli(nama, alamat, notlpn) {
+  try {
+    const dokRef = await addDoc(collection(db, 'pembeli'), {
+      nama: nama,
+      alamat: alamat,
+      notlpn: notlpn
+    });
+    console.log('Berhasil menambah produk ' + dokRef.id);
+  } catch (e) {
+    console.log('Gagal menambah produk' + e);
+  }
+   }
+   
+   export async function hapusPembeli(docId) {
+  await deleteDoc(doc(db, "pembeli", docId));
+}
