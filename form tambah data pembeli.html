@@ -30,3 +30,27 @@
     <button type="submit" class="btn btn-primary" id="tombol-tambah">Simpan</button>
      <img src="loader.gif" style="width: 2em; display: none" id="loader">
   </form>
+    <a href="index.html">lihat daftar pembeli</a>
+
+  <script type="module">
+    import { tambahPembeli } from './main.js';
+
+    let tombolTambah = document.getElementById('tombol-tambah');
+    let elemenNamaPembeli = document.getElementById('input-nama');
+    let elemenAlamat = document.getElementById('input-alamat');
+    let elemenNoTlpn = document.getElementById('input-noTlpn');
+    let loader = document.getElementById('loader');
+
+    tombolTambah.addEventListener('click', async function (e) {
+      e.preventDefault();
+      tombolTambah.setAttribute('disabled', 'disabled');
+      loader.style.display = "block";
+      
+      await tambahPembeli(elemenNamaPembeli.value, elemenAlamat.value, elemenNotlpn.value);
+      window.location.href = 'index.html';
+    });
+  </script>
+
+</body>
+
+</html>
